@@ -17,6 +17,18 @@ export function formItemToQuoteItem(item) {
 export const quoteItemTotal = (item) => item.quantity * item.unit_price;
 export const quoteTotalCents = (items) => items.reduce((sum, item) => sum + quoteItemTotal(item), 0);
 
+// Les polices standard des PDF ne contiennent pas l'espace fine insécable (U+202F) que le format
+// français utilise pour les milliers : elle s'afficherait « / » et déformerait toute la ligne.
+export const toPdfSafeText = (text) => String(text).replace(/[\u202f\u00a0]/g, ' ');
+
+export const formatEuros = (cents = 0, options = {}) => toPdfSafeText(
+  `${(cents / 100).toLocaleString('fr-FR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+    ...options
+  })} €`
+);
+
 export function normalizeQuoteItems(items) {
   let parsedItems = items;
   if (typeof parsedItems === 'string') {

@@ -2,10 +2,20 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   euroToCents,
+  formatEuros,
   formItemToQuoteItem,
   quoteItemTotal,
-  quoteTotalCents
+  quoteTotalCents,
+  toPdfSafeText
 } from '../src/lib/quote-format.js';
+
+test('les montants pour les PDF n\'utilisent que des espaces simples', () => {
+  const text = formatEuros(25555513);
+  assert.equal(text, '255 555,13 €');
+  assert.doesNotMatch(text, /[\u202f\u00a0]/);
+  assert.equal(formatEuros(0), '0,00 €');
+  assert.equal(toPdfSafeText('1\u202f000\u00a0€'), '1 000 €');
+});
 
 test('convertit les euros saisis en centimes sans erreur de virgule flottante', () => {
   assert.equal(euroToCents('19.99'), 1999);

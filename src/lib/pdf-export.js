@@ -1,4 +1,4 @@
-import { normalizeQuoteItems } from './quote-format.js';
+import { formatEuros, normalizeQuoteItems, toPdfSafeText } from './quote-format.js';
 
 const PAGE = { width: 210, height: 297, left: 15, right: 195 };
 const COLORS = {
@@ -9,10 +9,7 @@ const COLORS = {
   line: [226, 217, 204]
 };
 
-const money = (cents = 0) => `${(cents / 100).toLocaleString('fr-FR', {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2
-})} €`;
+const money = (cents = 0) => formatEuros(cents);
 
 const formatDate = (value) => {
   if (!value) return '—';
@@ -255,7 +252,7 @@ export async function createQuotePdf(quote, branding) {
 }
 
 const MONTH_LABELS = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
-const shortMoney = (euros) => `${Math.round(euros).toLocaleString('fr-FR')} €`;
+const shortMoney = (euros) => toPdfSafeText(`${Math.round(euros).toLocaleString('fr-FR')} €`);
 
 function drawMonthlyChart(doc, { x, y, width, height, income, expense, appointments }) {
   const series = [
