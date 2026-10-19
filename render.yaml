@@ -12,8 +12,6 @@ services:
         value: production
       - key: NODE_VERSION
         value: "22"
-      - key: APP_ORIGIN
-        sync: false
       - key: SESSION_SECRET
         generateValue: true
       - key: ADMIN_USERNAME
@@ -28,9 +26,3 @@ services:
         value: "587"
       - key: SMTP_SECURE
         value: "false"
-      - key: SMTP_USER
-        sync: false
-      - key: SMTP_PASSWORD
-        sync: false
-      - key: SMTP_FROM
-        sync: false
