@@ -2,24 +2,16 @@ services:
   - type: web
     name: tom-photo
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm install && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
     autoDeploy: true
-    disk:
-      name: tom-photo-data
-      mountPath: /var/data
-      sizeGB: 2
     envVars:
       - key: NODE_ENV
         value: production
-      - key: DATA_DIR
-        value: /var/data/data
-      - key: UPLOAD_DIR
-        value: /var/data/uploads
-      - key: RECEIPTS_DIR
-        value: /var/data/private-accounting-receipts
+      - key: NODE_VERSION
+        value: "22"
       - key: APP_ORIGIN
         sync: false
       - key: SESSION_SECRET
