@@ -1,0 +1,163 @@
+{
+  "site": {
+    "brand": "Tom Photo",
+    "tagline": "Photographe & vidéaste basé à Niort.",
+    "logo": "/images/logo-header.png",
+    "email": "tomphoto79000@gmail.com",
+    "phone": "",
+    "city": "Niort",
+    "navigation": [
+      { "label": "Accueil", "path": "/" },
+      { "label": "Galerie", "path": "/galerie" },
+      { "label": "Expertises", "path": "/expertises" },
+      { "label": "Tarifs", "path": "/tarifs" },
+      { "label": "Qui suis-je", "path": "/qui-suis-je" },
+      { "label": "Contact", "path": "/contact" }
+    ]
+  },
+  "home": {
+    "eyebrow": "L’image comme terrain de jeu",
+    "title": "TOM PHOTO",
+    "subtitle": "Photographe & vidéaste",
+    "heroImage": "/images/drone-poster.jpg",
+    "heroVideo": "/media/DJI_0331.mp4",
+    "canvas": {
+      "enabled": false,
+      "elements": []
+    },
+    "sectionEyebrow": "Un regard, plusieurs histoires",
+    "sectionTitle": "Mon univers",
+    "sectionIntro": "Chaque projet est une rencontre. Je cherche la lumière juste, le geste vrai et les images que l’on garde.",
+    "galleryAction": "Découvrir mon univers",
+    "pricingAction": "Voir mes tarifs",
+    "storyAction": "Parlons de votre projet",
+    "testimonialsEyebrow": "Ils m'ont fait confiance",
+    "testimonialsTitle": "Vos retours",
+    "testimonials": [
+      { "name": "Camille & Théo", "role": "Mariage à Niort", "message": "Tom a su capturer chaque émotion de notre journée avec discrétion. Les photos sont vivantes et pleines de sincérité, on ne s'en lasse pas." },
+      { "name": "Léa M.", "role": "Séance portrait", "message": "Une séance détendue et bienveillante. Je me sentais à l'aise et le résultat est naturel, exactement ce que je cherchais." },
+      { "name": "Famille Girard", "role": "Portrait de famille", "message": "Des portraits de famille magnifiques, réalisés avec patience et beaucoup de douceur avec les enfants. Merci Tom !" }
+    ],
+    "cards": [
+      { "title": "Portrait", "image": "/images/portrait.jpg", "description": "Des portraits naturels et lumineux." },
+      { "title": "Mariage", "image": "/images/mariage.jpg", "description": "Les moments vrais de votre journée." },
+      { "title": "Grossesse", "image": "/images/Grossesse.jpg", "description": "Des souvenirs doux et précieux." },
+      { "title": "Automobile", "image": "/images/automobile.jpg", "description": "Votre véhicule sous son meilleur angle." },
+      { "title": "Light Painting", "image": "/images/lightpainting.jpg", "description": "La lumière devient votre terrain de jeu." },
+      { "title": "Drone", "image": "/images/drone-poster.jpg", "description": "Un autre point de vue sur votre projet." },
+      { "title": "Événement", "image": "/images/evenement.jpg", "description": "Les moments forts, sans rien interrompre." }
+    ]
+  },
+  "pageCanvases": {
+    "expertise": { "enabled": false, "height": 1500, "background": "#f7f4ef", "elements": [] },
+    "pricing": { "enabled": false, "height": 1800, "background": "#f7f4ef", "elements": [] },
+    "about": { "enabled": false, "height": 1300, "background": "#f7f4ef", "elements": [] }
+  },
+  "gallery": {
+    "title": "La galerie",
+    "intro": "Parcourez mes univers : portraits, drone, vidéos et bien plus.",
+    "categories": ["Portrait", "Drone et Vidéos", "Mariage", "Grossesse", "Automobile", "Light Painting", "Événement"],
+    "cards": [
+      { "title": "Portrait solo", "image": "/images/portrait.jpg", "description": "Des portraits naturels et lumineux.", "category": "Portrait", "group": "Portrait seul", "type": "photo", "video": "" },
+      { "title": "Portrait à deux", "image": "/images/portrait.jpg", "description": "Votre complicité immortalisée.", "category": "Portrait", "group": "Portrait duo", "type": "photo", "video": "" },
+      { "title": "Portrait de famille", "image": "/images/portrait.jpg", "description": "Les souvenirs qui réunissent les vôtres.", "category": "Portrait", "group": "Portrait famille", "type": "photo", "video": "" },
+      { "title": "Vue par drone", "image": "/images/drone-poster.jpg", "description": "Un autre point de vue sur votre projet.", "category": "Drone et Vidéos", "group": "Drone", "type": "photo", "video": "" },
+      { "title": "Film de mariage", "image": "/images/drone-poster.jpg", "description": "Un extrait vidéo aérien immersif.", "category": "Drone et Vidéos", "group": "Vidéos", "type": "video", "video": "/media/DJI_0331.mp4" },
+      { "title": "Mariage", "image": "/images/mariage.jpg", "description": "Les moments vrais de votre journée.", "category": "Mariage", "group": "", "type": "photo", "video": "" },
+      { "title": "Grossesse", "image": "/images/Grossesse.jpg", "description": "Des souvenirs doux et précieux.", "category": "Grossesse", "group": "", "type": "photo", "video": "" },
+      { "title": "Automobile", "image": "/images/automobile.jpg", "description": "Votre véhicule sous son meilleur angle.", "category": "Automobile", "group": "", "type": "photo", "video": "" },
+      { "title": "Light Painting", "image": "/images/lightpainting.jpg", "description": "La lumière devient votre terrain de jeu.", "category": "Light Painting", "group": "", "type": "photo", "video": "" },
+      { "title": "Événement", "image": "/images/evenement.jpg", "description": "Les moments forts, sans rien interrompre.", "category": "Événement", "group": "", "type": "photo", "video": "" }
+    ]
+  },
+  "expertise": {
+    "title": "Mes expertises",
+    "intro": "Découvrez mon univers photographique à travers différentes spécialités.",
+    "eyebrow": "Mon savoir-faire",
+    "cardAction": "Voir la galerie",
+    "cards": [
+      { "title": "Portraits", "image": "/images/portrait.jpg", "description": "Des portraits naturels et lumineux." },
+      { "title": "Mariage", "image": "/images/mariage.jpg", "description": "Les moments vrais de votre journée." },
+      { "title": "Grossesse", "image": "/images/Grossesse.jpg", "description": "Des souvenirs doux et précieux." },
+      { "title": "Light Painting", "image": "/images/lightpainting.jpg", "description": "La lumière devient votre terrain de jeu." },
+      { "title": "Drone", "image": "/images/drone-poster.jpg", "description": "Un autre point de vue sur votre projet." },
+      { "title": "Événement", "image": "/images/evenement.jpg", "description": "Les moments forts, sans rien interrompre." }
+    ]
+  },
+  "pricing": {
+    "title": "Tarifs 2026",
+    "intro": "Des formules adaptées à chaque besoin, avec un accompagnement personnalisé.",
+    "eyebrow": "Des images qui vous ressemblent",
+    "cardAction": "Réserver",
+    "weddingEyebrow": "Votre journée, votre histoire",
+    "weddingTitle": "Mariages",
+    "weddingAction": "Demander les détails",
+    "cards": [
+      { "title": "Portrait studio", "image": "/images/portrait.jpg", "details": "1h · 10 photos", "price": "À partir de 90€" },
+      { "title": "Portrait extérieur", "image": "/images/portrait.jpg", "details": "1h30 · 15 photos", "price": "À partir de 120€" },
+      { "title": "Grossesse", "image": "/images/Grossesse.jpg", "details": "1h30 · 15 photos", "price": "À partir de 120€" },
+      { "title": "Light Painting", "image": "/images/lightpainting.jpg", "details": "1h · 10 photos", "price": "À partir de 120€" },
+      { "title": "Drone", "image": "/images/drone-poster.jpg", "details": "1h · 20 photos", "price": "À partir de 150€" },
+      { "title": "Événement", "image": "/images/evenement.jpg", "details": "Une prestation personnalisée", "price": "Sur devis" }
+    ],
+    "weddings": [
+      { "title": "Essentiel", "price": "690€", "description": "Photos · Les moments essentiels." },
+      { "title": "Classique", "price": "1290€", "description": "Photos + vidéos · 8h de reportage." },
+      { "title": "Prestige", "price": "1890€", "description": "Photos + vidéos · 12h de reportage." }
+    ]
+  },
+  "about": {
+    "title": "Des images sincères, pensées pour durer.",
+    "intro": "Enchanté, moi c’est Tom",
+    "sectionTitle": "Des images sincères, pensées pour durer.",
+    "paragraphs": [
+      "Depuis six ans, la photographie m’accompagne partout. Ce qui était une passion est devenu un métier : celui de créer des souvenirs vivants et de raconter les histoires avec sensibilité.",
+      "Portrait, mariage, grossesse, automobile, événement… chaque séance est préparée avec vous pour trouver le ton, le rythme et la lumière qui vous ressemblent.",
+      "Je me déplace depuis Niort à La Rochelle, Poitiers, Rochefort, Angoulême et Nantes."
+    ],
+    "image": "/images/portrait.jpg"
+  },
+  "contact": {
+    "title": "Échangeons quelques mots",
+    "intro": "Vous avez un projet photo en tête ? Écrivez-moi pour en discuter.",
+    "eyebrow": "Un projet en tête ?",
+    "panelEyebrow": "Parlons de vos images",
+    "panelTitle": "À votre écoute",
+    "panelDescription": "Décrivez votre projet et vos envies. Une demande de devis ne vaut pas confirmation de réservation.",
+    "zoneLabel": "Zone",
+    "formTitle": "Demander un devis",
+    "formIntro": "Les champs marqués d’un * sont obligatoires.",
+    "calendarEyebrow": "Agenda",
+    "calendarTitle": "Choisir une date",
+    "calendarOptional": "Date souhaitée · facultatif",
+    "calendarSelectedPrefix": "Votre date souhaitée :",
+    "calendarSelectHint": "Sélectionnez un jour pour voir les horaires indicatifs.",
+    "calendarNoTimes": "Aucun horaire indicatif restant pour aujourd’hui.",
+    "calendarNote": "Les créneaux sont indicatifs. La date ne sera confirmée qu’après échange avec Tom.",
+    "reservationNote": "Les horaires sont indicatifs et seront confirmés avec Tom après votre demande.",
+    "calendarUnavailable": "Cette date n’est pas disponible.",
+    "servicePlaceholder": "Choisissez une prestation",
+    "projectPlaceholder": "Décrivez votre projet et vos envies…",
+    "nameLabel": "Nom",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Téléphone",
+    "serviceLabel": "Prestation souhaitée",
+    "locationLabel": "Lieu du projet",
+    "messageLabel": "Votre message",
+    "submitLabel": "Envoyer ma demande",
+    "services": ["Portrait", "Mariage", "Grossesse", "Automobile", "Light Painting", "Drone", "Événement", "Autre"],
+    "times": ["10:00", "13:30", "16:00"],
+    "unavailableDates": []
+  },
+  "footer": {
+    "about": "Des images sensibles, vivantes et sur mesure pour raconter vos histoires.",
+    "locations": "Niort · La Rochelle · Poitiers · Rochefort · Angoulême · Nantes",
+    "navigationTitle": "Navigation",
+    "contactTitle": "Contact",
+    "adminLabel": "Espace administrateur",
+    "socialLinks": [
+      { "label": "Instagram", "url": "https://www.instagram.com/" },
+      { "label": "Facebook", "url": "https://www.facebook.com/" }
+    ]
+  }
+}
