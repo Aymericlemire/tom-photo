@@ -1,0 +1,21 @@
+name: Déployer sur Render
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher le déploiement Render
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK" ]; then
+            echo "Le secret RENDER_DEPLOY_HOOK est absent." >&2
+            exit 1
+          fi
+          curl --fail --silent --show-error --retry 3 --retry-delay 5 "$RENDER_DEPLOY_HOOK" > /dev/null
+          echo "Déploiement Render demandé pour ${GITHUB_SHA}."
