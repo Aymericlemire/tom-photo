@@ -1,0 +1,46 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "▶ Lancer le site (dev)",
+      "type": "npm",
+      "script": "dev",
+      "isBackground": true,
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true },
+      "detail": "Site sur http://127.0.0.1:5175 et API sur le port 5174, rechargement automatique."
+    },
+    {
+      "label": "✅ Lancer les tests",
+      "type": "npm",
+      "script": "test",
+      "problemMatcher": [],
+      "group": { "kind": "test", "isDefault": true }
+    },
+    {
+      "label": "📦 Vérifier avant de publier (tests + build)",
+      "type": "npm",
+      "script": "check",
+      "problemMatcher": []
+    },
+    {
+      "label": "🔌 Qui utilise les ports 5174 / 5175 ?",
+      "type": "npm",
+      "script": "ports",
+      "problemMatcher": []
+    },
+    {
+      "label": "🔐 Créer / changer le compte admin",
+      "type": "npm",
+      "script": "setup:admin",
+      "problemMatcher": []
+    },
+    {
+      "label": "🚀 Publier (vérifier puis git push = mise en ligne)",
+      "type": "shell",
+      "command": "npm run check; if ($?) { git push }",
+      "problemMatcher": [],
+      "detail": "Commitez d'abord vos changements. Le push déclenche le déploiement automatique sur Render."
+    }
+  ]
+}

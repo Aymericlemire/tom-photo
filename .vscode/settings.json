@@ -1,0 +1,28 @@
+{
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": false,
+  "files.eol": "\n",
+  "files.encoding": "utf8",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    "**/.git": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "dist": true,
+    "server/data": true,
+    "server/uploads": true,
+    "package-lock.json": true,
+    "**/*.log": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/server/data/**": true
+  },
+  "emmet.includeLanguages": { "javascript": "javascriptreact" },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.importModuleSpecifierEnding": "js"
+}

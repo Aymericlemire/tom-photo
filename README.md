@@ -2,6 +2,8 @@
 
 Cette application est indépendante du site HTML existant. Elle utilise React avec Vite pour les pages publiques et un serveur Express avec SQLite pour les contenus, les fichiers et l’espace administrateur.
 
+**Pour développer :** voir le [guide du développeur](docs/GUIDE-DEVELOPPEUR.md) (démarrage, tâches VS Code, recettes pour ajouter une page, un module admin ou une route d’API, publication). Commandes pratiques : `npm run check` (tests + build) et `npm run ports` (qui occupe les ports 5174/5175).
+
 ## Démarrage local
 
 1. Installer Node.js 20 ou plus récent.

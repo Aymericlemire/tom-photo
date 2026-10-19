@@ -8,9 +8,11 @@
     "dev:api": "node --watch --watch-path=server/index.js --watch-path=server/database.js --watch-path=server/lib server/index.js",
     "dev:web": "vite --host 127.0.0.1",
     "setup:admin": "node scripts/setup-admin.mjs",
+    "ports": "node scripts/ports.mjs",
     "build": "vite build",
     "start": "node server/index.js",
-    "test": "node --test"
+    "test": "node --test",
+    "check": "npm test && npm run build"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.0",

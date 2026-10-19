@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Déboguer le serveur (API)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/server/index.js",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Déboguer le site dans Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://127.0.0.1:5175",
+      "webRoot": "${workspaceFolder}/src"
+    },
+    {
+      "name": "Déboguer un fichier de test",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--test"],
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    }
+  ]
+}
