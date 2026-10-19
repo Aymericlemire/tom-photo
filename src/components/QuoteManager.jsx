@@ -12,7 +12,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { api } from '../api.js';
 import PdfPreviewModal from './PdfPreviewModal.jsx';
 import { createQuotePdf } from '../lib/pdf-export.js';
-import { normalizeQuoteItems } from '../lib/quote-format.js';
+import { formItemToQuoteItem, normalizeQuoteItems, quoteItemTotal, quoteTotalCents } from '../lib/quote-format.js';
 
 const statuses = {
   draft: 'Brouillon',
@@ -53,10 +53,9 @@ function emptyForm() {
   };
 }
 
-// Calcule le total (centimes) d'une liste de lignes saisies en euros.
-const computeTotalCents = (items) => Math.round(
-  items.reduce((sum, item) => sum + (Number(item.quantity) || 0) * (Number(item.unit_price) || 0), 0)
-);
+// Lignes réellement enregistrées (description renseignée), en centimes.
+const savedItems = (items) => items.map(formItemToQuoteItem).filter((item) => item.description);
+const computeTotalCents = (items) => quoteTotalCents(savedItems(items));
 
 export default function QuoteManager({ onError, branding }) {
   const [items, setItems] = useState([]);
@@ -184,13 +183,7 @@ export default function QuoteManager({ onError, branding }) {
       service: form.service.trim(),
       valid_until: form.valid_until || '',
       notes: form.notes.trim(),
-      items: form.items
-        .filter((item) => item.description.trim())
-        .map((item) => ({
-          description: item.description.trim(),
-          quantity: Math.round(Number(item.quantity) || 1),
-          unit_price: Math.round((Number(item.unit_price) || 0) * 100)
-        }))
+      items: savedItems(form.items)
     };
   }
 
@@ -406,7 +399,7 @@ export default function QuoteManager({ onError, branding }) {
                   aria-label="Prix unitaire en euros"
                 />
                 <span className="quotes__item-total">
-                  {euro(Math.round((Number(item.quantity) || 0) * (Number(item.unit_price) || 0) * 100))}
+                  {item.description.trim() ? euro(quoteItemTotal(formItemToQuoteItem(item))) : '—'}
                 </span>
                 <button type="button" className="text-button text-button--danger" onClick={() => removeItem(index)} disabled={form.items.length <= 1} aria-label="Supprimer la ligne">
                   ✕
