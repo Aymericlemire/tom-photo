@@ -74,8 +74,10 @@ import {
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
-const uploadDirectory = resolve(here, 'uploads');
-const accountingReceiptDirectory = resolve(here, 'private-accounting-receipts');
+const uploadDirectory = process.env.UPLOAD_DIR ? resolve(process.env.UPLOAD_DIR) : resolve(here, 'uploads');
+const accountingReceiptDirectory = process.env.RECEIPTS_DIR
+  ? resolve(process.env.RECEIPTS_DIR)
+  : resolve(here, 'private-accounting-receipts');
 const production = process.env.NODE_ENV === 'production';
 const port = Number(process.env.PORT || 5174);
 
@@ -1052,8 +1054,9 @@ app.use((error, _request, response, _next) => {
   });
 });
 
-app.listen(port, '127.0.0.1', () => {
-  console.log(`Tom Photo API listening on http://127.0.0.1:${port}`);
+const listenHost = process.env.HOST || (production ? '0.0.0.0' : '127.0.0.1');
+app.listen(port, listenHost, () => {
+  console.log(`Tom Photo API listening on http://${listenHost}:${port}`);
 });
 
 // -----------------------------------------------------------------------------

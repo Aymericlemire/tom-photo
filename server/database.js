@@ -10,7 +10,7 @@ import { initializeCrmStore } from './lib/crm-store.js';
 import { migrateGalleryCategories } from './lib/gallery-migration.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
-export const dataDirectory = resolve(here, 'data');
+export const dataDirectory = process.env.DATA_DIR ? resolve(process.env.DATA_DIR) : resolve(here, 'data');
 mkdirSync(dataDirectory, { recursive: true });
 
 export const db = new Database(resolve(dataDirectory, 'tom-photo.sqlite'));

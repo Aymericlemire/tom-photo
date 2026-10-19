@@ -145,20 +145,20 @@ export async function downloadAccountingXlsx({ year, entries, monthly, appointme
 
   // --- Feuille 1 : tableau de bord (une seule page) ---
   const summary = workbook.addWorksheet('Tableau de bord', { views: [{ showGridLines: false }] });
-  summary.columns = [{ width: 14 }, { width: 16 }, { width: 16 }, { width: 16 }, { width: 18 }, { width: 18 }];
-  summary.mergeCells('A1:F1');
+  summary.columns = [{ width: 12 }, { width: 32 }, { width: 20 }, { width: 22 }, { width: 15 }, { width: 14 }, { width: 15 }, { width: 11 }];
+  summary.mergeCells('A1:H1');
   Object.assign(summary.getCell('A1'), { value: `${company} — Comptabilité ${year}` });
   summary.getCell('A1').font = { size: 18, bold: true, color: { argb: 'FFFFFFFF' } };
   summary.getCell('A1').fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: INK } };
   summary.getCell('A1').alignment = { vertical: 'middle', indent: 1 };
   summary.getRow(1).height = 36;
-  summary.mergeCells('A2:F2');
+  summary.mergeCells('A2:H2');
   summary.getCell('A2').value = `Édité le ${new Date().toLocaleDateString('fr-FR')} · TVA estimée à partir des taux saisis, hors déclaration fiscale.`;
   summary.getCell('A2').font = { italic: true, size: 10, color: { argb: 'FF666666' } };
 
   const section = (title) => {
     const row = summary.addRow([title]);
-    summary.mergeCells(`A${row.number}:F${row.number}`);
+    summary.mergeCells(`A${row.number}:H${row.number}`);
     row.font = { bold: true, color: { argb: INK } };
     row.height = 22;
     row.eachCell((cell) => { cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GOLD } }; });
@@ -166,10 +166,10 @@ export async function downloadAccountingXlsx({ year, entries, monthly, appointme
   const line = (label, value, note = '') => {
     const row = summary.addRow([label, '', '', value, note]);
     summary.mergeCells(`A${row.number}:C${row.number}`);
-    summary.mergeCells(`E${row.number}:F${row.number}`);
+    summary.mergeCells(`E${row.number}:H${row.number}`);
     row.getCell(4).numFmt = EURO;
     row.getCell(5).font = { color: { argb: 'FF666666' }, size: 10 };
-    for (let col = 1; col <= 6; col += 1) row.getCell(col).border = { bottom: BORDER };
+    for (let col = 1; col <= 8; col += 1) row.getCell(col).border = { bottom: BORDER };
     return row;
   };
   summary.addRow([]);
@@ -232,7 +232,7 @@ export async function downloadAccountingXlsx({ year, entries, monthly, appointme
   });
   charts.addRow([]);
   const chartsRow = charts.addRow(['Graphiques']);
-  charts.mergeCells(`A${chartsRow.number}:F${chartsRow.number}`);
+  charts.mergeCells(`A${chartsRow.number}:H${chartsRow.number}`);
   chartsRow.height = 22;
   chartsRow.eachCell((cell) => {
     cell.font = { bold: true, color: { argb: INK } };
@@ -256,27 +256,17 @@ export async function downloadAccountingXlsx({ year, entries, monthly, appointme
     [...byCategory.entries()].map(([label, value]) => ({ label, value })).sort((a, b) => b.value - a.value)
   ), 1);
   for (let i = 0; i < ROWS_PER_PIC * 2; i += 1) charts.addRow([]);
-  summary.pageSetup = { orientation: 'portrait', fitToPage: true, fitToWidth: 1, fitToHeight: 1, paperSize: 9, horizontalCentered: true };
 
-  // --- Feuille 2 : journal ---
-  const journal = workbook.addWorksheet('Journal', { views: [{ state: 'frozen', ySplit: 1 }] });
-  journal.columns = [
-    { header: 'Date', key: 'date', width: 12, style: { numFmt: 'dd/mm/yyyy' } },
-    { header: 'Type', key: 'type', width: 11 },
-    { header: 'Libellé', key: 'label', width: 34 },
-    { header: 'Catégorie', key: 'category', width: 20 },
-    { header: 'Client / fournisseur', key: 'party', width: 24 },
-    { header: 'Montant HT', key: 'ht', width: 14, style: { numFmt: EURO } },
-    { header: 'TVA', key: 'vat', width: 12, style: { numFmt: EURO } },
-    { header: 'Montant TTC', key: 'ttc', width: 14, style: { numFmt: EURO } },
-    { header: 'Taux TVA', key: 'rate', width: 10, style: { numFmt: '0.0"%"' } },
-    { header: 'Statut', key: 'status', width: 11 },
-    { header: 'Règlement', key: 'paid', width: 12, style: { numFmt: 'dd/mm/yyyy' } },
-    { header: 'Justificatif', key: 'receipt', width: 26 },
-    { header: 'Notes', key: 'notes', width: 30 }
-  ];
-  const head = journal.getRow(1);
-  head.height = 24;
+  // --- Journal des écritures (même feuille, sous les graphiques) ---
+  const journalTitle = summary.addRow(['Journal des écritures']);
+  summary.mergeCells(`A${journalTitle.number}:H${journalTitle.number}`);
+  journalTitle.height = 22;
+  journalTitle.eachCell((cell) => {
+    cell.font = { bold: true, color: { argb: INK } };
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GOLD } };
+  });
+  const head = summary.addRow(['Date', 'Libellé', 'Catégorie', 'Client / fournisseur', 'Montant HT', 'TVA', 'Montant TTC', 'Statut']);
+  head.height = 22;
   head.eachCell((cell) => {
     cell.font = { bold: true, color: { argb: 'FFFFFFFF' } };
     cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: INK } };
@@ -286,47 +276,34 @@ export async function downloadAccountingXlsx({ year, entries, monthly, appointme
   sorted.forEach((entry, index) => {
     const { ht, vat } = splitVat(entry);
     const sign = entry.type === 'income' ? 1 : -1;
-    const row = journal.addRow({
-      date: toDate(entry.entry_date),
-      type: entry.type === 'income' ? 'Recette' : 'Dépense',
-      label: entry.description,
-      category: entry.category,
-      party: entry.counterparty,
-      ht: cents(ht * sign),
-      vat: cents(vat * sign),
-      ttc: cents(entry.amount * sign),
-      rate: entry.vat_rate || 0,
-      status: entry.payment_date ? 'Réglé' : 'À régler',
-      paid: toDate(entry.payment_date),
-      receipt: entry.receipt_url,
-      notes: entry.notes
-    });
+    const row = summary.addRow([
+      toDate(entry.entry_date), entry.description, entry.category, entry.counterparty,
+      cents(ht * sign), cents(vat * sign), cents(entry.amount * sign), entry.payment_date ? 'Réglé' : 'À régler'
+    ]);
+    row.getCell(1).numFmt = 'dd/mm/yyyy';
+    [5, 6, 7].forEach((col) => { row.getCell(col).numFmt = EURO; });
+    row.getCell(8).alignment = { horizontal: 'center' };
     row.eachCell({ includeEmpty: true }, (cell) => {
       cell.border = { bottom: BORDER };
       if (index % 2) cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: SOFT } };
     });
-    row.getCell('type').font = { color: { argb: entry.type === 'income' ? 'FF2E7D32' : 'FFC62828' }, bold: true };
+    row.getCell(7).font = { bold: true, color: { argb: entry.type === 'income' ? 'FF2E7D32' : 'FFC62828' } };
   });
 
-  const first = 2;
-  const last = journal.rowCount;
-  const total = journal.addRow({
-    label: 'RÉSULTAT',
-    ht: last >= first ? { formula: `SUM(F${first}:F${last})` } : 0,
-    vat: last >= first ? { formula: `SUM(G${first}:G${last})` } : 0,
-    ttc: last >= first ? { formula: `SUM(H${first}:H${last})` } : 0
-  });
+  const firstEntry = head.number + 1;
+  const lastEntry = summary.rowCount;
+  const hasEntries = lastEntry >= firstEntry;
+  const sumRange = (col) => (hasEntries ? { formula: `SUM(${col}${firstEntry}:${col}${lastEntry})` } : 0);
+  const total = summary.addRow(['', 'RÉSULTAT', '', '', sumRange('E'), sumRange('F'), sumRange('G'), '']);
   total.eachCell({ includeEmpty: true }, (cell, col) => {
-    if (col > 13) return;
     cell.font = { bold: true };
     cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: GOLD } };
-    cell.border = { top: { style: 'medium', color: { argb: INK } } };
+    if (col >= 5 && col <= 7) cell.numFmt = EURO;
   });
-  if (last >= first) journal.autoFilter = { from: 'A1', to: `M${last}` };
 
-  [journal].forEach((sheet) => {
-    sheet.pageSetup = { orientation: 'landscape', fitToPage: true, fitToWidth: 1, fitToHeight: 0 };
-  });
+  // Tout le rapport tient sur une seule page A4.
+  summary.pageSetup = { orientation: 'portrait', fitToPage: true, fitToWidth: 1, fitToHeight: 1, paperSize: 9, horizontalCentered: true };
+  summary.pageSetup.printArea = `A1:H${summary.rowCount}`;
 
   const buffer = await workbook.xlsx.writeBuffer();
   const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
